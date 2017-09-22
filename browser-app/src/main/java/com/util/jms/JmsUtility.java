@@ -50,7 +50,6 @@ public class JmsUtility {
     }
     
     public void send(String queueName, String payload) throws Exception {
-        //{"id":2023589,"dateTime":"2017-09-19T20:05:03.980Z","payload":"{\"timestamp\":\"2017-09-19T20:05:04.287Z\",\"transferId\":\"20170919000266\",\"externalTransferId\":\"145|83|64\",\"direction\":\"INCOMING\",\"transferMechanism\":\"ACH\",\"account\":\"5RS12063\",\"correspondentCode\":\"SOFI\",\"amount\":45000.0,\"status\":\"COMPLETE\",\"reason\":null}"}
         Connection con = jmsConnectionFactory.createConnection("admin", "admin");
         try {
             log.info("Starting jms connection.");
