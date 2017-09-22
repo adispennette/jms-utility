@@ -1,0 +1,41 @@
+buildscript {
+    ext { 
+        springBootVersion = '1.5.4.RELEASE'
+    }
+    dependencies { 
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}") 
+    }
+}
+
+apply plugin: 'org.springframework.boot'
+
+jar {
+    baseName = 'calendaring'
+}
+
+ext {
+    logbackVersion = '1.1.6'
+    slf4jApiVersion = '1.7.15' 
+}
+
+configurations {
+    compile.exclude group: 'org.springframework.boot', module: 'spring-boot-starter-tomcat'
+    compile.exclude group: 'org.apache.tomcat', module: 'tomcat-jdbc'
+}
+
+dependencies {
+    compile        'com.fasterxml.jackson.datatype:jackson-datatype-jsr310',
+                   'io.springfox:springfox-swagger2:2.7.0',
+                   'io.springfox:springfox-swagger-ui:2.7.0',
+                   'io.springfox:springfox-data-rest:2.7.0',
+                   'org.projectlombok:lombok:1.16.16',
+                   'org.springframework.boot:spring-boot-starter-actuator',
+                   'org.springframework.boot:spring-boot-starter-web',
+                   'org.springframework.boot:spring-boot-starter-hateoas',
+                   'org.springframework.boot:spring-boot-starter-jetty',
+                   'org.springframework.boot:spring-boot-starter-activemq',
+                   'org.apache.activemq:activemq-kahadb-store:5.8.0',
+                   'com.zaxxer:HikariCP:2.6.0'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test',
+                       'com.h2database:h2'
+}
