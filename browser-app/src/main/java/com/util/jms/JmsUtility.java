@@ -28,7 +28,7 @@ public class JmsUtility {
     public JmsUtility() {}
     
     public void browse(String queueName) throws JMSException {
-        Connection con = jmsConnectionFactory.createConnection("admin", "admin");
+        Connection con = jmsConnectionFactory.createConnection();
         try {
             con.start();
             Session session = con.createSession(false, Session.AUTO_ACKNOWLEDGE);
@@ -50,7 +50,7 @@ public class JmsUtility {
     }
     
     public void send(String queueName, String payload) throws Exception {
-        Connection con = jmsConnectionFactory.createConnection("admin", "admin");
+        Connection con = jmsConnectionFactory.createConnection();
         try {
             log.info("Starting jms connection.");
             con.start();
