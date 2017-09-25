@@ -37,11 +37,8 @@ public class JmsUtility {
             Enumeration<Message> e = browser.getEnumeration();
             while (e.hasMoreElements()) {
                 Message message = e.nextElement();
-                System.out.println("\n\nmessage: ");
-                System.out.println(((TextMessage)message).getText());
                 Enumeration<String> keys = message.getPropertyNames();
                 while (keys.hasMoreElements()) System.out.println(keys.nextElement());
-                System.out.println("\n\n");
             }
             session.close();
         } finally {
