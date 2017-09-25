@@ -10,7 +10,7 @@ buildscript {
 apply plugin: 'org.springframework.boot'
 
 jar {
-    baseName = 'calendaring'
+    baseName = 'jms-utility'
 }
 
 ext {
