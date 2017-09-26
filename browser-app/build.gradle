@@ -13,6 +13,10 @@ jar {
     baseName = 'jms-utility'
 }
 
+springBoot {
+    mainClass = 'com.util.jms.JmsBrowser'
+}
+
 ext {
     logbackVersion = '1.1.6'
     slf4jApiVersion = '1.7.15' 

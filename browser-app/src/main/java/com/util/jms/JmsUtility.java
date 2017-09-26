@@ -3,7 +3,10 @@ package com.util.jms;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Enumeration;
+import java.util.List;
 
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -27,7 +30,7 @@ public class JmsUtility {
 
     public JmsUtility() {}
     
-    public void browse(String queueName) throws JMSException {
+    public Collection<String> browse(String queueName) throws JMSException {
         Connection con = jmsConnectionFactory.createConnection();
         try {
             con.start();
@@ -35,12 +38,13 @@ public class JmsUtility {
             Queue queue = session.createQueue(queueName);
             QueueBrowser browser = session.createBrowser(queue);
             Enumeration<Message> e = browser.getEnumeration();
+            List<String> messages = new ArrayList<>();
+            System.out.println(e.hasMoreElements());
             while (e.hasMoreElements()) {
-                Message message = e.nextElement();
-                Enumeration<String> keys = message.getPropertyNames();
-                while (keys.hasMoreElements()) System.out.println(keys.nextElement());
+                messages.add(((TextMessage)e.nextElement()).getText());
             }
             session.close();
+            return messages;
         } finally {
             con.close();
         }

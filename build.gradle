@@ -4,11 +4,11 @@ plugins {
 
 allprojects {
     apply plugin: 'com.jfrog.artifactory'
-	buildscript {
-		repositories { 
-	    	mavenCentral() 
-	    }
-	}
+    buildscript {
+        repositories { 
+            mavenCentral() 
+        }
+    }
     repositories {
         mavenCentral()
         jcenter()
@@ -40,7 +40,7 @@ subprojects {
     }
     
     dependencies {
-    	implementation 'javax.inject:javax.inject:1',
+        implementation 'javax.inject:javax.inject:1',
                        'ch.qos.logback.contrib:logback-json-core:0.1.5',
                        'ch.qos.logback.contrib:logback-json-classic:0.1.5',
                        'ch.qos.logback.contrib:logback-jackson:0.1.5',
@@ -48,23 +48,23 @@ subprojects {
                        'commons-io:commons-io:2.5',
         
         testImplementation ('org.powermock:powermock-mockito-release-full:1.6.4') { 
-        	exclude group: 'org.javassist', module: 'javassist'
+            exclude group: 'org.javassist', module: 'javassist'
         }
         testImplementation 'junit:junit:4.12',
-        				   'org.javassist:javassist:3.21.0-GA',
-        				   'org.mockito:mockito-all:1.10.19'
+                           'org.javassist:javassist:3.21.0-GA',
+                           'org.mockito:mockito-all:1.10.19'
     }
 }
 
 project(':browser-app') { 
-	task copyApp(type: Copy) {
-		from "./build/libs"
-		into "../build/libs"
-	}
-	
-	build { 
-		finalizedBy copyApp
-	}
+    task copyApp(type: Copy) {
+        from "./build/libs"
+        into "../build/libs"
+    }
+    
+    build { 
+        finalizedBy copyApp
+    }
 }
 
 tasks.withType(JavaCompile) {
