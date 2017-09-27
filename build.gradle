@@ -45,7 +45,7 @@ subprojects {
                        'ch.qos.logback.contrib:logback-json-classic:0.1.5',
                        'ch.qos.logback.contrib:logback-jackson:0.1.5',
                        'org.codehaus.janino:janino:3.0.7',
-                       'commons-io:commons-io:2.5',
+                       'commons-io:commons-io:2.5'
         
         testImplementation ('org.powermock:powermock-mockito-release-full:1.6.4') { 
             exclude group: 'org.javassist', module: 'javassist'

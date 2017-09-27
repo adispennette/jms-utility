@@ -26,3 +26,5 @@ hs_err_pid*
 
 **/build/
 **/bin/
+**/activemq/*
+
