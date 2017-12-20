@@ -8,6 +8,7 @@ import java.util.Collection;
 import java.util.Enumeration;
 import java.util.List;
 
+import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.jms.Connection;
@@ -24,11 +25,19 @@ import javax.jms.TextMessage;
 @Named
 public class JmsUtility {
     private static final Logger log = LoggerFactory.getLogger(JmsUtility.class);
-
-    @Inject
+    private final AmqDynamicConnectionFactoryBuilder builder;
     private ConnectionFactory jmsConnectionFactory;
 
-    public JmsUtility() {}
+    @Inject
+    public JmsUtility(AmqDynamicConnectionFactoryBuilder builder) {
+        this.builder = builder;
+    }
+    
+    @PostConstruct
+    public void reload() {
+        log.info("updating jms connection factory");
+        jmsConnectionFactory = builder.createFactory();
+    }
     
     public Collection<String> browse(String queueName) throws JMSException {
         Connection con = jmsConnectionFactory.createConnection();
@@ -39,7 +48,6 @@ public class JmsUtility {
             QueueBrowser browser = session.createBrowser(queue);
             Enumeration<Message> e = browser.getEnumeration();
             List<String> messages = new ArrayList<>();
-            System.out.println(e.hasMoreElements());
             while (e.hasMoreElements()) {
                 messages.add(((TextMessage)e.nextElement()).getText());
             }
