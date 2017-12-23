@@ -1,6 +1,5 @@
 package com.util.jms.controllers;
 
-import com.util.jms.AmqDynamicConnectionFactoryBuilder;
 import com.util.jms.JmsUtility;
 import io.swagger.annotations.ApiOperation;
 import org.slf4j.Logger;
@@ -28,24 +27,19 @@ import javax.inject.Inject;
 public class JmsController {
     private static final Logger log = LoggerFactory.getLogger(JmsController.class);
     private final JmsUtility utility;
-    private final AmqDynamicConnectionFactoryBuilder builder;
 
     @Inject
-    public JmsController(AmqDynamicConnectionFactoryBuilder builder, JmsUtility utility) {
+    public JmsController(JmsUtility utility) {
         this.utility = utility;
-        this.builder = builder;
     }
 
     @ApiOperation(value = "Configure the dynamic connection factory.", response = String.class)
     @PostMapping(value = "/configure", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public ResponseEntity<String> configure(@RequestParam(value = "host") String host,
+    public ResponseEntity<String> configure(@RequestParam(value = "host", defaultValue = "tcp://localhost:61616") String host,
                                             @RequestParam(value = "principle", defaultValue = "admin") String principle,
                                             @RequestParam(value = "credential", defaultValue = "admin") String credential) {
         try {
-            builder.setHost(host);
-            builder.setPrinciple(principle);
-            builder.setCredential(credential);
-            utility.reload();
+            utility.reload(host, principle, credential);
             return new ResponseEntity<>("Success, Host updated to " + host, HttpStatus.ACCEPTED);
         } catch (Exception e) {
             log.error("An error occurred while browsing queue.", e);

@@ -34,8 +34,15 @@ public class JmsUtility {
     }
     
     @PostConstruct
-    public void reload() {
+    public void load() {
+        jmsConnectionFactory = builder.createFactory();
+    }
+    
+    public void reload(String host, String principle, String credential) {
         log.info("updating jms connection factory");
+        builder.setHost(host);
+        builder.setPrinciple(principle);
+        builder.setCredential(credential);
         jmsConnectionFactory = builder.createFactory();
     }
     

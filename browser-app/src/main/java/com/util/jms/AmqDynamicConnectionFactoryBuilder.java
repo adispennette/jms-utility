@@ -55,7 +55,7 @@ public class AmqDynamicConnectionFactoryBuilder {
     public void setPrinciple(String principle) {
         this.principle = principle;
     }
-
+    
     public void setCredential(String credential) {
         this.credential = credential;
     }
