@@ -8,4 +8,4 @@
 
 swagger docs at
 
-http://localhost:9119/jms/swagger-ui.html
+http://localhost:9119/swagger-ui.html
