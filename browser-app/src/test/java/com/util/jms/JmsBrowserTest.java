@@ -2,15 +2,23 @@ package com.util.jms;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.util.jms.JmsUtility;
+import org.apache.activemq.broker.BrokerService;
+import org.apache.activemq.broker.TransportConnector;
+import org.junit.AfterClass;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.net.URI;
+import java.net.URISyntaxException;
+
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = TestConfig.class)
-public class JmsBrowserTest {
+public class JmsBrowserTest extends BrokerTest {
+
     @Autowired
     JmsUtility browser;
 

@@ -1,7 +1,7 @@
 package com.util.jms.controllers;
 
 import com.util.jms.JmsUtility;
-import io.swagger.annotations.ApiOperation;
+import io.swagger.v3.oas.annotations.Operation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
@@ -33,8 +33,8 @@ public class JmsController {
         this.utility = utility;
     }
 
-    @ApiOperation(value = "Configure the dynamic connection factory.", response = String.class)
-    @PostMapping(value = "/configure", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @Operation(description = "Configure the dynamic connection factory.")
+    @PostMapping(value = "/configure", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<String> configure(@RequestParam(value = "host", defaultValue = "tcp://localhost:61616") String host,
                                             @RequestParam(value = "principle", defaultValue = "admin") String principle,
                                             @RequestParam(value = "credential", defaultValue = "admin") String credential) {
@@ -47,8 +47,8 @@ public class JmsController {
         }
     }
 
-    @ApiOperation(value = "Send a message to a queue.", response = String.class)
-    @PostMapping(value = "/{queueName}/send", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @Operation(description = "Send a message to a queue.")
+    @PostMapping(value = "/{queueName}/send", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<String> send(@PathVariable String queueName, @RequestBody String payload) {
         try {
             log.info(queueName);
@@ -60,8 +60,8 @@ public class JmsController {
         return new ResponseEntity<>("sent", HttpStatus.OK);
     }
 
-    @ApiOperation(value = "Browse messages on a queue.", response = String.class)
-    @GetMapping(value = "/browse", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @Operation(description = "Browse messages on a queue.")
+    @GetMapping(value = "/browse", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Collection<String>> browse(@RequestParam(value = "queueName") String queueName) {
         try {
             log.info(queueName);

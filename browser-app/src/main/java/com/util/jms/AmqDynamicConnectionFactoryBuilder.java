@@ -1,5 +1,6 @@
 package com.util.jms;
 
+import lombok.Data;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -13,8 +14,9 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 
+@Data
 @Named
-public class AmqDynamicConnectionFactoryBuilder { 
+public class AmqDynamicConnectionFactoryBuilder {
     private static final Logger log = LoggerFactory.getLogger(AmqDynamicConnectionFactoryBuilder.class);
 
     @Value("${activemq.host:tcp://localhost:61616}")

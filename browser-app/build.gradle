@@ -1,6 +1,6 @@
 buildscript {
     ext { 
-        springBootVersion = '1.5.4.RELEASE'
+        springBootVersion = '2.2.0.RELEASE'
     }
     dependencies { 
         classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}") 
@@ -8,13 +8,14 @@ buildscript {
 }
 
 apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
 
 jar {
     baseName = 'jms-utility'
 }
 
 springBoot {
-    mainClass = 'com.util.jms.JmsBrowser'
+    mainClassName = 'com.util.jms.JmsBrowser'
 }
 
 ext {
@@ -28,18 +29,21 @@ configurations {
 }
 
 dependencies {
-    compile        'com.fasterxml.jackson.datatype:jackson-datatype-jsr310',
-                   'io.springfox:springfox-swagger2:2.7.0',
-                   'io.springfox:springfox-swagger-ui:2.7.0',
-                   'io.springfox:springfox-data-rest:2.7.0',
-                   'org.projectlombok:lombok:1.16.16',
+    implementation 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310',
+//                   'io.springfox:springfox-swagger2:3.0.0',
+//                   'io.springfox:springfox-swagger-ui:3.0.0',
+//                   'io.springfox:springfox-data-rest:3.0.0',
+                   'org.projectlombok:lombok:1.18.16',
                    'org.springframework.boot:spring-boot-starter-actuator',
                    'org.springframework.boot:spring-boot-starter-web',
                    'org.springframework.boot:spring-boot-starter-hateoas',
                    'org.springframework.boot:spring-boot-starter-jetty',
                    'org.springframework.boot:spring-boot-starter-activemq',
-                   'org.apache.activemq:activemq-kahadb-store:5.8.0',
+                   'org.springdoc:springdoc-openapi-ui:1.5.0',
+//                   'io.springfox:springfox-boot-starter:3.0.0',
+                   'org.apache.activemq:activemq-kahadb-store:5.16.0',
                    'com.zaxxer:HikariCP:2.6.0'
+    compile "io.springfox:springfox-swagger-ui:3.0.0"
     testImplementation 'org.springframework.boot:spring-boot-starter-test',
                        'com.h2database:h2'
 }
