@@ -1,0 +1,18 @@
+
+jar {
+    baseName = 'scratchpad'
+}
+
+ext {
+    logbackVersion = '1.1.6'
+    slf4jApiVersion = '1.7.15' 
+}
+
+configurations {
+    compile.exclude group: 'org.springframework.boot', module: 'spring-boot-starter-tomcat'
+    compile.exclude group: 'org.apache.tomcat', module: 'tomcat-jdbc'
+}
+
+dependencies {
+    implementation 'org.projectlombok:lombok:1.18.16'
+}

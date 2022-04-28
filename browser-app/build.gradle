@@ -3,7 +3,7 @@ buildscript {
         springBootVersion = '2.2.0.RELEASE'
     }
     dependencies { 
-        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}") 
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
     }
 }
 
@@ -42,7 +42,13 @@ dependencies {
                    'org.springdoc:springdoc-openapi-ui:1.5.0',
 //                   'io.springfox:springfox-boot-starter:3.0.0',
                    'org.apache.activemq:activemq-kahadb-store:5.16.0',
-                   'com.zaxxer:HikariCP:2.6.0'
+                   'com.zaxxer:HikariCP:2.6.0',
+                   'com.github.polygon-io:client-jvm:1.1.1',
+                   'com.amazonaws:aws-lambda-java-core:1.2.1',
+                   'com.amazonaws:aws-lambda-java-events:1.2.1',
+                   'com.amazonaws:aws-java-sdk-lambda:1.11.994',
+                   'com.amazonaws:aws-java-sdk-kinesis:1.11.994',
+                   'com.amazonaws:amazon-kinesis-client:1.14.2'
     compile "io.springfox:springfox-swagger-ui:3.0.0"
     testImplementation 'org.springframework.boot:spring-boot-starter-test',
                        'com.h2database:h2'
