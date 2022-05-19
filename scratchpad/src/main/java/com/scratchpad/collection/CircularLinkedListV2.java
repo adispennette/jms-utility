@@ -28,7 +28,6 @@ public class CircularLinkedListV2<T> {
         tail.next = head; // set the next entry to the head
         head.previous = tail; // update head to point to the new tail
         entries.put(value, newEntry);
-        if (size() == 2) { head.next = tail; } // edge case for the second entry
     }
 
     public void delete(T valueToDelete) {
